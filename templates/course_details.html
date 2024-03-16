@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+    
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Course Details</h1>
+        
+        <h2>{{ course_details.course_name }}</h2>
+        <p class="lead">Instructor: {{ course_details.instructor }}</p>
+        
+        <h3>Lessons</h3>
+        <ul class="list-group">
+            {% for lesson in course_details.lessons %}
+                <li class="list-group-item">{{ lesson.name }}</li>
+            {% endfor %}
+        </ul>
+        
+        <form class="mt-4" action="/courses/{{ course_details.course_id }}/enroll" method="post">
+            <button class="btn btn-primary" type="submit">Enroll</button>
+        </form>
+    
+        <form class="mt-2" action="/courses/{{ course_details.course_id }}/lessons">
+            <button class="btn btn-success" type="submit">Start Learning</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

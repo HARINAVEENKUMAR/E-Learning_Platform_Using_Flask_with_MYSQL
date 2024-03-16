@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #fff;
+            border-bottom: none;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 20px;
+        }
+        .card-body {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 20px;
+        }
+        .embed-responsive {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .youtube-width {
+max-width: 500px;
+min-width: 200px;
+margin: 30px auto 30px auto; /* AUTO CENTERS THE VIDEO + TOP/BOTTOM MARGINS */
+}
+
+.youtube-container {
+padding-top: 0px;
+padding-bottom: 56.25%;
+height: 0;
+overflow: hidden;
+position: relative;
+z-index: 100;
+}
+
+.youtube-container iframe,
+.youtube-container object,
+.youtube-container embed {
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+z-index: 101;
+}
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center">{{ lesson[2] }}</h1>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ lesson[3] }}</p>
+                        <!-- Embedded YouTube Video -->
+                        <div class=" class="youtube-width"">
+                            <div class="youtube-container">
+                                <iframe class="embed-responsive-item" src="{{ lesson[4] }}" allowfullscreen></iframe>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

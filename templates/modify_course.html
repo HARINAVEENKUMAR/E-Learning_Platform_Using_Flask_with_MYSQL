@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify course</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Additional styles can be added here */
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+    
+    <div class="container mt-5">
+        <h1 class="mb-4">Modify course</h1>
+        <form action="/instructor/modify_course/{{ course_id }}" method="post">
+            <div class="form-group">
+                <label for="course_name">course_name:</label>
+                <input type="text" class="form-control" id="course_name" name="course_name" value="{{ course[1] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">description:</label>
+                <input type="description" class="form-control" id="description" name="description" value="{{ course[2] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="instructor_id">instructor_id:</label>
+                <input type="instructor_id" class="form-control" id="instructor_id" name="instructor_id" value="{{ course[3] }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+
+    <div class="container mt-5"><h1>Manage Lessons</h1></div>
+
+    <div class="container mt-5">
+        
+        <h1 class="mb-4">Add Lesson</h1>
+        <form action="/instructor/add_lesson/{{ course_id }}" method="post">
+            <div class="form-group">
+                <label for="lesson_name">Lesson name:</label>
+                <input type="text" class="form-control" id="lesson_name" name="lesson_name" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Content:</label>
+                <input type="content" class="form-control" id="content" name="content" required>
+            </div>
+            <div class="form-group">
+                <label for="youtube_url">Youtube URL:</label>
+                <input type="youtube_url" class="form-control" id="youtube_url" name="youtube_url" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Lesson</button>
+        </form>
+    </div>
+
+    <div class="container mt-4">
+        <h2>Lesson List</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Lesson ID</th>
+                        <th>Course ID</th>
+                        <th>Description</th>
+                        <th>Content</th>
+                        <th>Youtube URL</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lesson in lessons %}
+                    <tr>
+                        <td>{{ lesson[0] }}</td>
+                        <td>{{ lesson[1] }}</td>
+                        <td>{{ lesson[2] }}</td>
+                        <td>{{ lesson[3] }}</td>
+                        <td>{{ lesson[4] }}</td>
+                        <td>
+                            <form action="/instructor/delete_lesson/{{lesson[1]}}/{{ lesson[0] }}" method="post">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <br/>
+                            <form action="/instructor/modify_lesson/{{ lesson[0] }}" method="get">
+                                <button type="submit" class="btn btn-primary">View/Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

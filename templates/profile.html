@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>User Profile</h1>
+    
+    {% if user %}
+    <h2>User Details</h2>
+    <p>User ID: {{ user[0] }}</p>
+    <p>Username: {{ user[1] }}</p>
+    <p>Email: {{ user[2] }}</p>
+{% else %}
+    <p>User details not found.</p>
+{% endif %}
+
+    
+    {% if enrolled_courses %}
+        <h2>Enrolled Courses</h2>
+        <ul>
+            {% for course in enrolled_courses %}
+                <li>{{ course[1] }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No enrolled courses.</p>
+    {% endif %}
+</body>
+</html>
